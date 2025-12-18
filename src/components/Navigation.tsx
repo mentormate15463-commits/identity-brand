@@ -7,7 +7,7 @@ import { Logo } from "@/components/Logo";
 const navLinks = [
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
-  { name: "Work", href: "#portfolio" },
+  { name: "Clients", href: "#clients" },
   { name: "Process", href: "#process" },
   { name: "Contact", href: "#contact" },
 ];
@@ -31,14 +31,14 @@ export const Navigation = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? "glass py-4" : "bg-transparent py-6"
+          isScrolled ? "glass py-3 md:py-4" : "bg-transparent py-4 md:py-6"
         }`}
       >
-        <div className="container mx-auto px-6 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           <Logo size="md" showText={true} />
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -53,7 +53,7 @@ export const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button variant="hero" size="default">
+            <Button variant="hero" size="default" className="whitespace-nowrap">
               Start a Project
             </Button>
           </div>
@@ -61,7 +61,7 @@ export const Navigation = () => {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-foreground p-2"
+            className="lg:hidden text-foreground p-2 hover:text-primary transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -79,8 +79,8 @@ export const Navigation = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-background/95 backdrop-blur-xl pt-24 px-6">
-              <div className="flex flex-col gap-6">
+            <div className="absolute inset-0 bg-background/98 backdrop-blur-xl pt-20 px-6 overflow-y-auto">
+              <div className="flex flex-col gap-6 max-w-md mx-auto">
                 {navLinks.map((link, index) => (
                   <motion.a
                     key={link.name}
@@ -89,12 +89,17 @@ export const Navigation = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-2xl font-display text-foreground hover:text-primary transition-colors"
+                    className="text-2xl font-display text-foreground hover:text-primary transition-colors py-2 border-b border-border/30"
                   >
                     {link.name}
                   </motion.a>
                 ))}
-                <Button variant="hero" size="lg" className="mt-4 w-full">
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="mt-4 w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   Start a Project
                 </Button>
               </div>
