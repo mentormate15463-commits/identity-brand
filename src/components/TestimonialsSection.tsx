@@ -1,23 +1,17 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "They don't just execute—they elevate. Every project becomes a masterpiece.",
+    quote: "They don't just execute—they elevate. Every project becomes a masterpiece of strategic thinking and creative excellence.",
     author: "Sarah Chen",
     role: "CMO, Global Tech Company",
   },
   {
-    quote: "The perfect blend of creative vision and strategic thinking. Truly world-class.",
+    quote: "The perfect blend of creative vision and strategic thinking. Their AI-powered approach revolutionized our content production.",
     author: "Michael Torres",
     role: "Brand Director, Fortune 500",
-  },
-  {
-    quote: "Their AI-powered approach revolutionized how we create content at scale.",
-    author: "Emma Williams",
-    role: "VP Marketing, Luxury Brand",
   },
 ];
 
@@ -26,47 +20,45 @@ export const TestimonialsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-32 relative overflow-hidden bg-charcoal">
+    <section className="py-32 md:py-40 relative overflow-hidden bg-charcoal">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <span className="text-primary font-body text-sm font-semibold tracking-widest uppercase mb-4 block">
+          <span className="text-primary font-body text-xs font-medium tracking-[0.2em] uppercase mb-6 block">
             Testimonials
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground">
-            Words from <span className="text-gradient">Leaders</span>
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-foreground">
+            Words from leaders
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16">
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <motion.blockquote
               key={testimonial.author}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="relative p-8 rounded-2xl border border-border bg-card/30"
+              className="relative"
             >
-              <Quote className="w-10 h-10 text-primary/30 mb-6" />
-              
-              <p className="font-display text-xl text-foreground leading-relaxed mb-8 italic">
+              <p className="font-display text-xl md:text-2xl lg:text-3xl font-light text-foreground/90 leading-relaxed mb-8 italic">
                 "{testimonial.quote}"
               </p>
               
-              <div>
-                <p className="font-body font-semibold text-foreground">
+              <footer>
+                <p className="font-body font-medium text-foreground text-sm">
                   {testimonial.author}
                 </p>
-                <p className="font-body text-sm text-foreground/50">
+                <p className="font-body text-foreground/40 text-xs mt-1">
                   {testimonial.role}
                 </p>
-              </div>
-            </motion.div>
+              </footer>
+            </motion.blockquote>
           ))}
         </div>
       </div>
