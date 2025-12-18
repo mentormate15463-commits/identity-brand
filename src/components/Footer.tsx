@@ -1,19 +1,11 @@
-import { motion } from "framer-motion";
+import { Logo } from "@/components/Logo";
 
 export const Footer = () => {
   return (
     <footer className="py-12 border-t border-border">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-sm">I</span>
-            </div>
-            <span className="font-display text-lg font-semibold text-foreground">
-              Identity<span className="text-primary">Brand</span>
-            </span>
-          </div>
+          <Logo size="sm" showText={true} />
 
           {/* Copyright */}
           <p className="font-body text-sm text-foreground/50 text-center">

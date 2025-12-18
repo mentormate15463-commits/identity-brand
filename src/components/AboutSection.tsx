@@ -1,23 +1,22 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, Globe, Zap } from "lucide-react";
 
 const features = [
   {
-    icon: Sparkles,
+    number: "01",
     title: "AI-Powered Creativity",
-    description: "Leveraging cutting-edge AI to amplify human creativity and deliver unprecedented solutions.",
+    description: "We leverage cutting-edge artificial intelligence to amplify human creativity—delivering solutions that were previously impossible.",
   },
   {
-    icon: Globe,
+    number: "02",
     title: "Global Perspective",
-    description: "Multicultural teams in Mumbai & Dubai crafting experiences that resonate worldwide.",
+    description: "With studios in Mumbai and Dubai, our multicultural teams craft experiences that resonate across borders and cultures.",
   },
   {
-    icon: Zap,
+    number: "03",
     title: "End-to-End Execution",
-    description: "From strategy to launch, we handle every touchpoint with precision and excellence.",
+    description: "From initial strategy through final delivery, we handle every touchpoint with precision, care, and excellence.",
   },
 ];
 
@@ -26,89 +25,100 @@ export const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
-      {/* Background Elements */}
+    <section id="about" className="py-32 md:py-40 relative overflow-hidden">
+      {/* Subtle top border */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       
       <div className="container mx-auto px-6">
-        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
+        <div ref={ref} className="max-w-6xl mx-auto">
+          {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
+            className="mb-20 md:mb-28"
           >
-            <span className="text-primary font-body text-sm font-semibold tracking-widest uppercase mb-4 block">
-              About the Studio
+            <span className="text-primary font-body text-xs font-medium tracking-[0.2em] uppercase mb-6 block">
+              The Studio
             </span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight mb-6">
-              Where Human{" "}
-              <span className="italic text-primary">Creativity</span> Meets{" "}
-              <span className="text-gradient">AI Intelligence</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-foreground leading-[1.1] max-w-4xl">
+              Where human{" "}
+              <em className="text-primary">creativity</em> meets{" "}
+              <span className="text-gradient">machine intelligence</span>
             </h2>
-            <p className="text-foreground/60 font-body text-lg leading-relaxed mb-8">
-              We are a global collective of strategists, designers, filmmakers, and technologists 
-              united by a passion for crafting transformative brand experiences. Our work spans 
-              screens, spaces, and emerging technologies—building brands that captivate and endure.
-            </p>
-            <p className="text-foreground/60 font-body text-lg leading-relaxed">
-              As your long-term creative partner, we don't just execute—we think, strategize, 
-              and innovate alongside you, turning ambitious visions into tangible realities that 
-              resonate across cultures and platforms.
-            </p>
           </motion.div>
 
-          {/* Right Content - Feature Cards */}
-          <div className="space-y-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="group p-6 rounded-2xl glass hover:bg-secondary/50 transition-all duration-500"
-              >
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-foreground/60 font-body">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+          {/* Two Column Layout */}
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <p className="text-foreground/70 font-body text-lg md:text-xl leading-relaxed mb-6">
+                We are a global collective of strategists, designers, filmmakers, and technologists 
+                united by a singular passion: crafting transformative brand experiences that 
+                captivate and endure.
+              </p>
+              <p className="text-foreground/50 font-body text-base leading-relaxed">
+                Our work spans screens, spaces, and emerging technologies. As your long-term 
+                creative partner, we don't just execute—we think, strategize, and innovate 
+                alongside you.
+              </p>
+            </motion.div>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-16 border-t border-border"
-        >
-          {[
-            { number: "150+", label: "Global Brands" },
-            { number: "500+", label: "Projects Delivered" },
-            { number: "12", label: "Years Experience" },
-            { number: "2", label: "Global Studios" },
-          ].map((stat, index) => (
-            <div key={stat.label} className="text-center">
-              <div className="font-display text-4xl md:text-5xl font-semibold text-gradient mb-2">
-                {stat.number}
-              </div>
-              <div className="text-foreground/60 font-body text-sm tracking-wide">
-                {stat.label}
-              </div>
+            {/* Feature List */}
+            <div className="space-y-10">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.15 }}
+                  className="group"
+                >
+                  <div className="flex gap-6">
+                    <span className="text-primary/40 font-body text-sm font-medium tracking-wide">
+                      {feature.number}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-xl md:text-2xl font-normal text-foreground mb-3">
+                        {feature.title}
+                      </h3>
+                      <p className="text-foreground/50 font-body text-sm leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          ))}
-        </motion.div>
+          </div>
+
+          {/* Stats Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 border-t border-border/50"
+          >
+            {[
+              { number: "150+", label: "Global Brands" },
+              { number: "500+", label: "Projects Delivered" },
+              { number: "12", label: "Years Experience" },
+              { number: "2", label: "Global Studios" },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center md:text-left">
+                <div className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-foreground/40 font-body text-xs tracking-[0.15em] uppercase">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
